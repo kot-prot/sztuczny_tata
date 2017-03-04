@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8"/>
@@ -26,8 +26,9 @@
 			var clean_room = get_value("clean_room");
 			var cats = get_value("cats");
 			var thrash = get_value("thrash");
+			var usage = get_value("usage");
 
-			if (day_of_week != '' && homework != '' && clean_room != '' && cats != '' && thrash != '') {
+			if (day_of_week != '' && homework != '' && clean_room != '' && cats != '' && thrash != '' && usage != '') {
 				if (clean_room != 'Yes') {
 					return "Nie, nie możesz. Musisz najpierw posprzątać pokój.";
 				}
@@ -44,6 +45,10 @@
 					return "Nie możesz, musisz wyczyścić kuwety.";
 				}
 
+				if (usage == '>60') {
+					return "Nie możesz, już za długo używałeś komputera.";
+				}
+
 				return "Tak, możesz!";
 			} 
 			return "Odpowiedz najpierw na wszystkie pytania."
@@ -53,11 +58,21 @@
 <body>
 <h1>Czy mogę?</h1>
 <form>
-<p>Filip czy Maja?</p>
+<p>Filip czy,  Maja?</p>
 <select id="person">
 	<option value=""></option>
 	<option value="Filip">Filip</option>
 	<option value="Maja">Maja</option>
+</select>
+
+<p>Ile czasu już dzisiaj korzystałeś z komputera?</p>
+<select id="usage">
+	<option value=""></option>
+	<option value="0">wcale</option>
+	<option value="15">15 minut</option>
+	<option value="30">pół godziny</option>
+	<option value="60">godzinę</option>
+	<option value=">60">więcej</option>
 </select>
 
 <p>Jaki jest dzisiaj dzień tygodnia?</p>
