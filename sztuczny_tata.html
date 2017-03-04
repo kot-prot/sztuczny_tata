@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+	<style>
+	#result {
+		color: red;
+		font-weight: bold;
+	}
+	</style>
+	<script>
+		function get_value(element_id) {
+			return document.getElementById(element_id).value;
+		}
+
+		function check() {
+			var result = calculate_result();
+			document.getElementById("result").innerHTML = result;
+			return false;
+		}
+
+		function calculate_result() {
+			var person = get_value("person")
+			var day_of_week = get_value("day_of_week");
+			var homework = get_value("homework");
+			var clean_room = get_value("clean_room");
+			var cats = get_value("cats");
+			var thrash = get_value("thrash");
+
+			if (day_of_week != '' && homework != '' && clean_room != '' && cats != '' && thrash != '') {
+				if (clean_room != 'Yes') {
+					return "Nie, nie możesz. Musisz najpierw posprzątać pokój.";
+				}
+
+				if (homework != 'Yes') {
+					return "Nie, nie możesz. Musisz najpierw odrobić zadanie domowe";
+				}
+
+				if (person == 'Filip' && thrash != "Yes") {
+					return "Nie możesz, musisz wyrzucić śmieci.";
+				}
+
+				if (person == 'Maja' && cats != "Yes") {
+					return "Nie możesz, musisz wyczyścić kuwety.";
+				}
+
+				return "Tak, możesz!";
+			} 
+			return "Odpowiedz najpierw na wszystkie pytania."
+		}
+	</script>
+</head>
+<body>
+<h1>Czy mogę?</h1>
+<form>
+<p>Filip czy Maja?</p>
+<select id="person">
+	<option value=""></option>
+	<option value="Filip">Filip</option>
+	<option value="Maja">Maja</option>
+</select>
+
+<p>Jaki jest dzisiaj dzień tygodnia?</p>
+<select id="day_of_week">
+	<option value=""></option>
+	<option value="Monday">Poniedziałek</option>
+	<option value="Tuesday">Wtorek</option>
+	<option value="Wednesday">Środa</option>
+	<option value="Thursday">Czwartek</option>
+	<option value="Friday">Piątek</option>
+	<option value="Saturday">Sobota</option>
+	<option value="Sunday">Niedziela</option>
+</select>
+
+<p>Czy wyczyściłeś kuwety?</p>
+<select id="cats">
+	<option value=""></option>
+	<option value="Yes">Tak</option>
+	<option value="No">Nie</option>
+</select>
+
+<p>Czy wyniosłeś śmieci?</p>
+<select id="thrash">
+	<option value=""></option>
+	<option value="Yes">Tak</option>
+	<option value="No">Nie</option>
+</select>
+
+<p>Czy odrobiłeś lekcje?</p>
+<select id="homework">
+	<option value=""></option>
+	<option value="Yes">Tak</option>
+	<option value="No">Nie</option>
+	<option value="Yes">Nic nie jest zadane</option>
+</select>
+
+<p>Czy pokój jest posprzątany?</p>
+<select id="clean_room">
+	<option value=""></option>
+	<option value="Yes">Tak</option>
+	<option value="No">Nie</option>
+</select>
+
+<p>Sprawdź czy możesz</p>
+<button onclick="check(); return false;">Sprawdź</button>
+
+<p id="result"></p>
+
+</body>
+</html>
